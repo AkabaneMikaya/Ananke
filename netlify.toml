@@ -1,0 +1,3 @@
+# Buildless static site. Keep index.html at this directory level.
+[build]
+  publish = "."

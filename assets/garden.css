@@ -1,0 +1,30 @@
+/* The secret theme only exists while the pointer remains over the door. */
+body,body .header,body .door-leaf,body .portrait,body .status,body .button,body .eyebrow,body .hero-caption,body .muted,body .small-note,body .setting-list p,body .archive-grid p,body .character p,body footer,body .brand-symbol,body .story-end,body nav,body select{transition:background-color .5s ease,color .5s ease,border-color .5s ease}
+html.garden-light{color-scheme:light;--bg:#FDFDFE;--panel:#e6dcf0;--text:#40354e;--muted:#70647d;--blue:#77608d;--wine:#966e89;--line:#cfc0df}
+.garden-light body,.garden-light body .header,.garden-light body .door-leaf,.garden-light body .portrait,.garden-light body .status,.garden-light body .button,.garden-light body .eyebrow,.garden-light body .hero-caption,.garden-light body .muted,.garden-light body .small-note,.garden-light body .setting-list p,.garden-light body .archive-grid p,.garden-light body .character p,.garden-light body footer,.garden-light body .brand-symbol,.garden-light body .story-end,.garden-light body nav,.garden-light body select{transition-duration:5s}
+.garden-light .header{background-color:#FDFDFE}.garden-light .door-leaf{background-color:#e4d9ef}.garden-light .portrait{background:var(--panel)}
+.garden-entry{position:absolute;inset:40% -35% auto;z-index:3;color:#534162;font:clamp(13px,1.4vw,18px)/1.8 var(--serif);letter-spacing:.08em;white-space:nowrap;text-align:center;pointer-events:none;animation:garden-distortion 5s infinite}
+.garden-entry[hidden]{display:none}.garden-entry::before,.garden-entry::after{content:attr(data-text);position:absolute;inset:0;opacity:0;pointer-events:none}.garden-entry::before{color:#9c789d;animation:garden-slice 4s infinite}.garden-entry::after{color:#798ca7;animation:garden-slice 4s .12s infinite reverse}
+@keyframes garden-distortion{0%,91%,95%,100%{transform:translateX(0)}92%{transform:translateX(-2px)}93%{transform:translateX(2px)}94%{transform:translateX(-1px)}}
+@keyframes garden-slice{0%,89%,95%,100%{opacity:0;clip-path:inset(0)}90%,92%{opacity:.8;clip-path:inset(20% 0 60%);transform:translateX(-3px)}91%,94%{opacity:.7;clip-path:inset(65% 0 10%);transform:translateX(3px)}}
+@media(prefers-reduced-motion:reduce){.garden-entry,.garden-entry::before,.garden-entry::after{animation:none}}
+
+/* Keep door movement independent of the secret theme color fade. */
+body .door-leaf{transition:transform .7s ease-in-out,background-color .5s ease,border-color .5s ease}
+.garden-light body .door-leaf{transition:transform .7s ease-in-out,background-color 5s ease,border-color 5s ease}
+@media(prefers-reduced-motion:reduce){body .door-leaf,.garden-light body .door-leaf{transition:none}}
+
+
+@property --reveal-radius{syntax:'<length>';inherits:false;initial-value:0px}
+.garden-radial-passage{position:fixed;inset:0;z-index:10000;pointer-events:all;--reveal-radius:0px;background:radial-gradient(circle at var(--center-x) var(--center-y),#fff 0px,#fff calc(var(--reveal-radius) * .32),rgba(255,255,255,.85) calc(var(--reveal-radius) * .5),rgba(255,255,255,.25) calc(var(--reveal-radius) * .8),rgba(255,255,255,0) var(--reveal-radius));opacity:0}
+
+/* Interpolate the shared divider color, including sections without transitions. */
+@property --line{syntax:'<color>';inherits:true;initial-value:#363a40}
+html{transition:--line .5s ease}
+html.garden-light{transition:--line 5s ease}
+
+.garden-light .hero-art::before{opacity:0;transition-duration:5s}
+/* Match the light inside the doorway to the surrounding near-white canvas. */
+.garden-light .door-light{background:#FDFDFE}
+.garden-light .door.is-open .door-light{box-shadow:0 0 65px rgba(253,253,254,.27)}
+@media(hover:hover){.garden-light .door:hover .door-light{box-shadow:0 0 65px rgba(253,253,254,.27)}}

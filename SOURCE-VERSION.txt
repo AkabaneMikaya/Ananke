@@ -1,0 +1,8 @@
+Ananke / 原罪
+Exported: 2026-11-03 Asia/Tokyo
+Base Sites version: 25
+Base source commit: 1f27d256aa1e2b4c7b08915d8849ba7cdeb173db
+Local export changes: renamed 12 character URLs and IDs per user list; renamed Suzuran to 石川澪; updated internal links, documentation, and redirects.
+This export has not been deployed to Sites.
+
+Additional export change: prefixed character page filenames with chara01 through chara12 in the user-specified order; IDs unchanged.

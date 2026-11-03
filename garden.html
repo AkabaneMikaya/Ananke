@@ -1,0 +1,501 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="color-scheme" content="light">
+  <meta name="theme-color" content="#FDFDFE">
+  <script src="assets/page-bgm.js" defer></script>
+
+  <title>❦之花園</title>
+
+  <style>
+    html {
+      color-scheme: light;
+      background: #FDFDFE;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      min-height: 100svh;
+      display: grid;
+      place-items: center;
+      background: #FDFDFE;
+      color: #554b60;
+      font-family:
+        Georgia,
+        "Noto Serif TC",
+        "Noto Serif JP",
+        "Songti TC",
+        serif;
+      font-size: clamp(16px, 2vw, 20px);
+      line-height: 2.3;
+    }
+
+    main {
+      width: 100%;
+      max-width: 800px;
+      padding: 70px 28px;
+      text-align: center;
+      animation: arrive 2s ease both;
+    }
+
+    p {
+      position: relative;
+      margin: 0 0 1.2em;
+      overflow-wrap: anywhere;
+      animation: text-shift 6s infinite;
+    }
+
+    p:last-child {
+      margin-bottom: 0;
+    }
+
+    p::before,
+    p::after {
+      content: attr(data-text);
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0;
+    }
+
+    p::before {
+      color: #a282a9;
+      animation: text-slice 5s infinite;
+    }
+
+    p::after {
+      color: #8198ac;
+      animation: text-slice 5s 0.15s infinite reverse;
+    }
+
+    p:nth-child(even) {
+      animation-delay: 1.2s;
+    }
+
+    @keyframes arrive {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes text-shift {
+      0%, 93%, 97%, 100% {
+        transform: translateX(0);
+      }
+
+      94% {
+        transform: translateX(-1px);
+      }
+
+      95% {
+        transform: translateX(1px);
+      }
+    }
+
+    @keyframes text-slice {
+      0%, 91%, 97%, 100% {
+        opacity: 0;
+      }
+
+      92%, 94% {
+        opacity: 0.65;
+        clip-path: inset(20% 0 60%);
+        transform: translateX(-2px);
+      }
+
+      93%, 96% {
+        opacity: 0.6;
+        clip-path: inset(65% 0 10%);
+        transform: translateX(2px);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      main,
+      p,
+      p::before,
+      p::after {
+        animation: none;
+      }
+    }
+    /* 背景特效層：不擋住文字或滑鼠操作 */
+.garden-atmosphere {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* 文字保持在特效上方 */
+body > main {
+  position: relative;
+  z-index: 1;
+}
+
+/* 螢幕中央的極淡黃色光暈 */
+.garden-yellow-glow {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: min(75vw, 750px);
+  height: min(65vh, 550px);
+  transform: translate(-50%, -50%);
+
+  background: radial-gradient(
+    ellipse,
+    rgba(255, 213, 100, 0.10) 0%,
+    rgba(255, 222, 145, 0.3) 40%,
+    rgba(255, 222, 145, 0) 72%
+  );
+
+  opacity: 0.15;
+  animation: garden-glow-breathe 15s ease-in-out infinite;
+}
+
+/* 落葉的移動外層 */
+.garden-leaf {
+  position: absolute;
+  top: -50px;
+  left: var(--leaf-left);
+  width: var(--leaf-size);
+  height: calc(var(--leaf-size) * 0.55);
+
+  opacity: 0;
+
+  animation:
+    garden-leaf-fall
+    var(--leaf-duration)
+    linear
+    var(--leaf-delay)
+    infinite;
+}
+
+/* 真正的葉片，與飄落動作分開旋轉 */
+.garden-leaf-shape {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+
+  background: var(--leaf-color);
+  border-radius: 0 85% 0 85%;
+
+  animation:
+    garden-leaf-turn
+    var(--leaf-turn-duration)
+    ease-in-out
+    var(--leaf-delay)
+    infinite alternate;
+}
+
+/* 葉脈 */
+.garden-leaf-shape::after {
+  content: "";
+  position: absolute;
+  left: 12%;
+  top: 50%;
+  width: 76%;
+  height: 1px;
+  background: rgba(253, 253, 254, 0.4);
+  transform: rotate(24deg);
+}
+
+@keyframes garden-leaf-fall {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, -30px, 0);
+  }
+
+  10% {
+    opacity: var(--leaf-opacity);
+  }
+
+  45% {
+    transform: translate3d(
+      var(--leaf-drift-mid),
+      48vh,
+      0
+    );
+  }
+
+  85% {
+    opacity: var(--leaf-opacity);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate3d(
+      var(--leaf-drift-end),
+      calc(100vh + 100px),
+      0
+    );
+  }
+}
+
+@keyframes garden-leaf-turn {
+  0% {
+    transform: rotate(var(--leaf-angle)) rotateY(0deg);
+  }
+
+  100% {
+    transform:
+      rotate(calc(var(--leaf-angle) + 160deg))
+      rotateY(65deg);
+  }
+}
+
+@keyframes garden-glow-breathe {
+  0%, 100% {
+    opacity: 0.15;
+  }
+
+  35% {
+    opacity: 0.5;
+  }
+
+  55% {
+    opacity: 0.23;
+  }
+
+  75% {
+    opacity: 0.65;
+  }
+}
+
+/* 減少動態效果時，停用落葉與閃爍 */
+@media (prefers-reduced-motion: reduce) {
+  .garden-leaf {
+    display: none;
+  }
+
+  .garden-yellow-glow {
+    animation: none;
+    opacity: 0.25;
+  }
+}
+  </style>
+</head>
+
+<body
+    data-bgm="assets/audio/garden-bgm.wav"
+    data-bgm-volume="0.7"
+    data-bgm-autoplay="true"
+    data-bgm-controls="false"
+>
+
+  <main>
+    <p data-line="welcome"
+       data-text="恭喜你走到了這裡。">恭喜你走到了這裡。</p>
+
+    <p data-line="why"
+       data-text="為什麼你會走到這裡？">為什麼你會走到這裡？</p>
+
+    <p data-line="alone"
+       data-text="你是獨自發現這裡的嗎？">你是獨自發現這裡的嗎？</p>
+
+    <p data-line="others"
+       data-text="還是其他人告訴你可以這麼做，你才來的？">還是其他人告訴你可以這麼做，你才來的？</p>
+
+    <p data-line="message"
+       data-text="無論如何，我只想告訴你。">無論如何，我只想告訴你。</p>
+
+    <p data-line="ending"
+       data-text="他們的故事還沒結束，永遠都不會。">他們的故事還沒結束，永遠都不會。</p>
+  </main>
+
+  <script>
+    (() => {
+      const translations = {
+        "zh-Hant": {
+          title: "【❦之花園】",
+          welcome: "恭喜你走到了這裡。",
+          why: "為什麼你會走到這裡？",
+          alone: "你是獨自發現這裡的嗎？",
+          others: "還是其他人告訴你可以這麼做，你才來的？",
+          message: "無論如何，我只想告訴你。",
+          ending: "他們的故事還沒結束，永遠都不會。"
+        },
+
+        en: {
+          title: "[The Garden of ❦]",
+          welcome: "Congratulations. You made it here.",
+          why: "Why did you come here?",
+          alone: "Did you find this place on your own?",
+          others:
+            "Or did you come because someone told you to?",
+          message:
+            "By the way, there is just one thing I want to tell you.",
+          ending:
+            "Their stories are not over. They will never."
+        },
+
+        ja: {
+          title: "【❦の庭】",
+          welcome: "ここまで辿り着いておめでとう。",
+          why: "なんでここまで来たのですか？",
+          alone: "ここは、自分で見つけた場所ですか？",
+          others:
+            "それとも、誰かに来方を教えられたから、来たのですか？",
+          message:
+            "とにかく、伝えたいことは一つだけ。",
+          ending:
+            "彼らの物語はまだ終わっていません。永遠に、終わっていません。"
+        }
+      };
+
+      function applyLanguage() {
+        let language = "zh-Hant";
+
+        try {
+          language =
+            localStorage.getItem("original-sin-language") || language;
+        } catch {
+          // 無法讀取儲存資料時，使用繁體中文。
+        }
+
+        if (
+          !Object.prototype.hasOwnProperty.call(
+            translations,
+            language
+          )
+        ) {
+          language = "zh-Hant";
+        }
+
+        const text = translations[language];
+
+        document.documentElement.lang = language;
+        document.title = text.title;
+
+        document.querySelectorAll("[data-line]").forEach(element => {
+          const translatedText = text[element.dataset.line];
+
+          if (translatedText !== undefined) {
+            element.textContent = translatedText;
+            element.dataset.text = translatedText;
+          }
+        });
+      }
+
+      applyLanguage();
+
+      // 從瀏覽器返回此頁時，重新讀取首頁選擇的語言。
+      window.addEventListener("pageshow", applyLanguage);
+
+      // 同網站其他分頁修改語言時，同步更新。
+      window.addEventListener("storage", event => {
+        if (event.key === "original-sin-language") {
+          applyLanguage();
+        }
+      });
+    })();
+  </script>
+  <script>
+  (() => {
+    // 避免重複建立特效。
+    if (document.querySelector(".garden-atmosphere")) {
+      return;
+    }
+
+    const atmosphere = document.createElement("div");
+    atmosphere.className = "garden-atmosphere";
+    atmosphere.setAttribute("aria-hidden", "true");
+
+    const glow = document.createElement("div");
+    glow.className = "garden-yellow-glow";
+    atmosphere.append(glow);
+
+    const colors = [
+      "#A58FD1",
+      "#B7A2D8",
+      "#9780BC",
+      "#C5B2DF"
+    ];
+
+    const random = (min, max) =>
+      min + Math.random() * (max - min);
+
+    const leafCount = 18;
+
+    for (let i = 0; i < leafCount; i++) {
+      const leaf = document.createElement("span");
+      leaf.className = "garden-leaf";
+
+      const duration = random(14, 25);
+
+      leaf.style.setProperty(
+        "--leaf-left",
+        `${random(0, 100)}%`
+      );
+
+      leaf.style.setProperty(
+        "--leaf-size",
+        `${random(10, 22)}px`
+      );
+
+      leaf.style.setProperty(
+        "--leaf-color",
+        colors[Math.floor(Math.random() * colors.length)]
+      );
+
+      leaf.style.setProperty(
+        "--leaf-opacity",
+        random(0.18, 0.42).toFixed(2)
+      );
+
+      leaf.style.setProperty(
+        "--leaf-duration",
+        `${duration}s`
+      );
+
+      // 負延遲讓剛開頁面時，落葉已分布在不同高度。
+      leaf.style.setProperty(
+        "--leaf-delay",
+        `${-random(0, duration)}s`
+      );
+
+      leaf.style.setProperty(
+        "--leaf-turn-duration",
+        `${random(3, 6)}s`
+      );
+
+      leaf.style.setProperty(
+        "--leaf-angle",
+        `${random(-90, 90)}deg`
+      );
+
+      leaf.style.setProperty(
+        "--leaf-drift-mid",
+        `${random(-60, 60)}px`
+      );
+
+      leaf.style.setProperty(
+        "--leaf-drift-end",
+        `${random(-140, 140)}px`
+      );
+
+      const shape = document.createElement("span");
+      shape.className = "garden-leaf-shape";
+
+      leaf.append(shape);
+      atmosphere.append(leaf);
+    }
+
+    document.body.prepend(atmosphere);
+  })();
+</script>
+</body>
+</html>

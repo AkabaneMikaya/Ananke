@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark light">
+  <meta name="theme-color" content="#17191c">
+  <meta name="description" content="《原罪》原創世界設定集：世界概覽、科技與設定、人物、語言與地圖。">
+  <title>原罪｜世界設定集</title>
+  <link rel="stylesheet" href="assets/style.css">
+  <link rel="stylesheet" href="assets/garden.css">
+  <script src="assets/garden.js" defer></script>
+  <script src="assets/content.js" defer></script>
+  <script src="assets/characters.js" defer></script>
+  <script src="assets/app.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#main" data-i18n="skip">跳至內容</a>
+  <header class="header">
+    <a class="brand" href="#home" aria-label="原罪"><span class="brand-symbol" aria-hidden="true">◈</span><span data-i18n="name">原罪</span></a>
+    <nav aria-label="主要導覽" data-i18n-aria="navLabel">
+      <a href="#world" data-i18n="world">世界概覽</a>
+      <a href="#settings" data-i18n="settings">科技與設定</a>
+      <a href="#characters" data-i18n="characters">人物介紹</a>
+      <a href="#archive" data-i18n="archive">更多檔案</a>
+    </nav>
+    <label class="language"><span class="sr-only" data-i18n="language">網站語言</span><select id="language"><option value="zh-Hant">繁中</option><option value="en">EN</option><option value="ja">日本語</option></select></label>
+  </header>
+  <main id="main">
+    <section class="hero" id="home" aria-labelledby="hero-title">
+      <div class="hero-art"><div class="orbit" aria-hidden="true"></div><button class="door" type="button" aria-label="打開門" data-i18n-aria="doorLabel" aria-pressed="false"><span class="door-light" aria-hidden="true"></span><span class="door-leaf left" aria-hidden="true"></span><span class="door-leaf right" aria-hidden="true"></span></button></div>
+      <div class="hero-copy"><p class="eyebrow" data-i18n="heroLabel">原創世界・設定集</p>
+        <h1 id="hero-title" data-i18n="name">原罪</h1>
+        <p class="hero-line" data-i18n="tagline">靈魂曾是神聖。<br>直到人類學會為它標價。</p>
+        <a class="button" href="#world"><span data-i18n="enter">走進這個世界</span><span aria-hidden="true">↘</span></a>
+      </div>
+      <p class="hero-caption" data-i18n="heroCaption">門的另一端，風暴正在醞釀。</p>
+    </section>
+    <section class="section world" id="world" aria-labelledby="world-title">
+      <div class="section-heading"><p class="eyebrow">01</p><h2 id="world-title" data-i18n="world">世界概覽</h2><p class="muted" data-i18n="worldSub">從靈魂的色彩開始。</p></div>
+      <div class="story"><p data-i18n="story1">起初，世界被兩位創世神賦予了特殊的色彩：靈魂。</p><p data-i18n="story2">人類曾以靈魂為神聖，讚美其色彩、敬畏其存在。</p><p data-i18n="story3">但有人學會了捕獲靈魂。他們將靈魂從肉體剝離，製成商品；能看見一切本質的人卻被公開處刑。火焰過後一切歸零、消失，但這場處刑似乎為他們撬開了成神的大門。</p><p class="story-end" data-i18n="story4">門的另一端，一場無聲的風暴正在悄然醞釀……</p></div>
+    </section>
+    <section class="section" id="settings" aria-labelledby="settings-title">
+      <div class="section-heading"><p class="eyebrow">02</p><h2 id="settings-title" data-i18n="settings">科技與設定</h2><p class="muted" data-i18n="settingsSub">理解這個世界的規則。</p></div>
+      <div class="setting-list"><article><a class="setting-link" href="soul-tech.html"><span class="entry-number">I</span><div><h3 data-i18n="soulTech">靈魂相關技術</h3><p data-i18n="soulTechText">關於靈魂的捕獲、運用與相關技術。</p></div><span class="link-arrow" aria-hidden="true">↗</span></a></article><article><a class="setting-link" href="cosmos-tech.html"><span class="entry-number">II</span><div><h3 data-i18n="cosmosTech">宇宙相關技術</h3><p data-i18n="cosmosTechText">宇宙相關技術與世界運作方式的設定。</p></div><span class="link-arrow" aria-hidden="true">↗</span></a></article><article><a class="setting-link" href="glossary.html"><span class="entry-number">III</span><div><h3 data-i18n="glossary">專有名詞解釋</h3><p data-i18n="glossaryText">查閱這個世界的專有名詞與概念。</p></div><span class="link-arrow" aria-hidden="true">↗</span></a></article><article><a class="setting-link" href="organizations.html"><span class="entry-number">IV</span><div><h3 data-i18n="organizations">主要組織與計劃</h3><p data-i18n="organizationsText">了解主要組織，以及各項計劃的設定。</p></div><span class="link-arrow" aria-hidden="true">↗</span></a></article></div>
+    </section>
+    <section class="section" id="characters" aria-labelledby="characters-title">
+      <div class="section-heading"><p class="eyebrow">03</p><h2 id="characters-title" data-i18n="characters">人物介紹</h2><p class="muted" data-i18n="charactersSub">每一個靈魂，都有自己的故事。</p></div>
+      <div class="character-grid" id="character-list"></div>
+      <p class="small-note" data-i18n="characterNote">點擊人物圖片或名字查看資料；全部人物可由人物列表查閱。</p><a class="button" href="characters.html"><span data-character-label="allCharacters">全部人物</span><span aria-hidden="true">↗</span></a>
+    </section>
+    <section class="section" id="archive" aria-labelledby="archive-title">
+      <div class="section-heading"><p class="eyebrow">04 — 06</p><h2 id="archive-title" data-i18n="archive">更多檔案</h2><p class="muted" data-i18n="archiveSub">世界的輪廓，將在這裡逐步完整。</p></div>
+      <div class="archive-grid"><article id="languages"><a class="archive-link" href="languages.html"><span class="archive-symbol" aria-hidden="true">Aa</span><h3 data-i18n="conlang">語言系統</h3><p data-i18n="conlangText">預留世界內的文字、發音規則、詞彙與例句。</p><span class="status" data-i18n="pending">內容整理中</span><span class="link-arrow" aria-hidden="true">↗</span></a></article><article id="map"><a class="archive-link" href="map.html"><span class="archive-symbol" aria-hidden="true">⌖</span><h3 data-i18n="map">地圖</h3><p data-i18n="mapText">預留世界地圖、地區與地點介紹。尚未加入正式地理設定。</p><span class="status" data-i18n="pending">內容整理中</span><span class="link-arrow" aria-hidden="true">↗</span></a></article><article id="inspiration"><a class="archive-link" href="inspiration.html"><span class="archive-symbol" aria-hidden="true">✧</span><h3 data-i18n="inspiration">靈感和素材</h3><p data-i18n="inspirationText">預留創作筆記、參考資料，以及素材作者與授權資訊。</p><span class="status" data-i18n="pending">內容整理中</span><span class="link-arrow" aria-hidden="true">↗</span></a></article></div>
+    </section>
+  </main>
+  <footer>
+    <a href="#home" data-i18n="name">原罪</a>
+    <span data-i18n="footer">《原罪》設定集</span>
+    <a href="#home" data-i18n="top">回到頂部 ↑</a>
+<a href="zzz-credits.html" data-i18n="creditsTitle">製作名單與素材來源</a>
+  </footer>
+  <noscript>請啟用 JavaScript 以使用三語切換與人物列表。 / Enable JavaScript for language switching and character entries.</noscript>
+</body>
+</html>
